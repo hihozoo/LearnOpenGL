@@ -12,7 +12,13 @@ uniform mat4 projection;
 void main()
 {
     FragPos = vec3(model * vec4(aPos, 1.0));
-    Normal = aNormal;  
-    
+
+	// 这个是不对的, 物体在变换的时候, 法线也会发生变换
+    // Normal = aNormal;
+
+	// Normal = mat3(model) * aNormal;
+
+	Normal = mat3(transpose(inverse(model))) * aNormal;
+
     gl_Position = projection * view * vec4(FragPos, 1.0);
 }
