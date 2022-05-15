@@ -62,7 +62,7 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -78,8 +78,9 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("6.2.cubemaps.vs", "6.2.cubemaps.fs");
-    Shader skyboxShader("6.2.skybox.vs", "6.2.skybox.fs");
+    //Shader shader("6.2.cubemaps.vs", "6.2.cubemaps.fs");
+    Shader shader("6.2.cubemaps_vertex.vs", "6.2.cubemaps_vertex.fs");
+	Shader skyboxShader("6.2.skybox.vs", "6.2.skybox.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -127,7 +128,8 @@ int main()
         -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
         -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
     };
-    float skyboxVertices[] = {
+    
+	float skyboxVertices[] = {
         // positions          
         -1.0f,  1.0f, -1.0f,
         -1.0f, -1.0f, -1.0f,
