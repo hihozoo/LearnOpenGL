@@ -179,7 +179,8 @@ int main()
 		
 		// 怎么保证视锥体把相机能看到的都包含进去了？
 		float near_plane = 1.0f, far_plane = 7.5f;
-        lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+        //lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+        lightProjection = glm::perspective(45.0f, 1.0f, near_plane, far_plane);
 		
 		// 定义视图矩阵
 		lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
@@ -187,7 +188,9 @@ int main()
     
 		// render scene from light's point of view
         simpleDepthShader.use();
-        simpleDepthShader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+        ////simpleDepthShader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+        simpleDepthShader.setMat4("lightProjMatrix", lightProjection);
+        simpleDepthShader.setMat4("lightViewMatrix", lightView);
 
         glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         
